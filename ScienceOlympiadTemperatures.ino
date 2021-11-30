@@ -1,7 +1,7 @@
 /*
  * 2020 Science Olympiad Detector Building
  * This code takes a voltage input from a TMP36 and returns the equivalent temperature reading
- * The thermistor was waterproofed using a plastic straw and silicone in order to measure the temperature of several different cups of water
+ * The sensor was waterproofed using a plastic straw and silicone in order to measure the temperature of several different cups of water
  * Equations were determined by using several different regression methods from collected samples from water of known temperatures
  * Written for use with an Arduino MKR1000
  * 
@@ -23,7 +23,7 @@ double analogVolts;        // variable to store the analog voltage
 double degC;               // variable to store the temperature in degC
 double voltsSlope = 1.65/4096; // volts/count 1.65v AREF with a 12bit ADC
 
-// TM36 Thermistor linear conversion constants (i.e. y = a * x + b)
+// TM36 Sensor linear conversion constants (i.e. y = a * x + b)
 double slope = 100;        //100 degC/volt (a)
 double offset = -50;       //offset of -50 degC (b)
 
@@ -34,8 +34,8 @@ double avgTemperature;
 double avgTemperature2;
 
 //Temperature Calibration Constants
-double thermistorLow = 1;
-double thermistorHigh = 99;
+double sensorLow = 1;
+double sensorHigh = 99;
 double thermometerLow = 1;
 double thermometerHigh = 99;
 double adjustedValue;
@@ -96,13 +96,13 @@ void loop() {
 //Calculate the average of the 25th through the 75th percentile of values
   avgTemperature2 = avgTemperature2 / count;
   
-  adjustedValue = map_double(avgTemperature, thermistorLow, thermistorHigh, thermometerLow,thermometerHigh);
+  adjustedValue = map_double(avgTemperature, sensorLow, sensorHigh, thermometerLow,thermometerHigh);
   
 
   //Turn on the correct LED based on the temperature
   if ((avgTemperature >= blueMin) && (avgTemperature <= blueMax))
   {
-    Serial.print("Blue Zone, Thermistor deg C = ");
+    Serial.print("Blue Zone, Sensor deg C = ");
     Serial.print(avgTemperature, 1);
     Serial.print(", AvgTemp2 = ");
     Serial.print(avgTemperature2, 1);
