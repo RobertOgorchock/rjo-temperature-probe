@@ -1,6 +1,6 @@
 /*
  * 2020 Science Olympiad Detector Building
- * This code takes a voltage input from a TMP36 thermistor and returns the equivalent temperature reading
+ * This code takes a voltage input from a TMP36 and returns the equivalent temperature reading
  * The thermistor was waterproofed using a plastic straw and silicone in order to measure the temperature of several different cups of water
  * Equations were determined by using several different regression methods from collected samples from water of known temperatures
  * Written for use with an Arduino MKR1000
